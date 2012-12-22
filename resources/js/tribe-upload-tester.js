@@ -4,29 +4,17 @@ jQuery(document).ready(function($){
 
 	// Handle results from media manager.
 	_my_media.editor.send.attachment = function(props, attachment) {
-		//wp.media.editor.send.attachment = function(props, attachment) {
 		render_image(props, attachment);
 	}
 
 	// Hook into upload button.
 	$('.uploader .button').click(function(e) {
-
-		// todo:
-		// multiple = false
-		// type = image
-		// tab = upload
-		// from_url = false
-		// gallery = hidden
-
 		_my_media.editor.open($(this));
 		return false;
 	});
 
-
-
-
-
 	// Output selected image HTML.
+	// This part could be totally rewritten for your own purposes to process the results!
 	render_image = function(props, attachment) {
 		console.log(props);
 		console.log(attachment);

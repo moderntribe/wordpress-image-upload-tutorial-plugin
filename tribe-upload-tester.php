@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Tribe Upload Tester
-Description: Simple test of WordPress 3.5+ uploader integration.
+Description: A simple test of WordPress 3.5+ uploader integration.
 Author: Peter Chester of Modern Tribe, Inc.
-Version: 0.1
+Version: 1.0
 Author URI: http://tri.be
 
 Huge thanks to:
@@ -17,12 +17,14 @@ if ( !defined('ABSPATH') )
 
 class Tribe_Upload_Tester {
 
+	const PAGE_NAME = 'tribe-upload-tester';
+
 	/**
 	 * Set up all the hooks for the plugin.
 	 */
 	function __construct() {
 		add_action( 'load-tribe-uploader', array( $this, 'tribe_admin_setup' ) );
-		add_action( 'load-settings_page_tribe-uploader', array( $this, 'tribe_admin_setup' ) );
+		add_action( 'load-settings_page_'.self::PAGE_NAME, array( $this, 'tribe_admin_setup' ) );
 		add_action( 'admin_menu', array( $this, 'tribe_add_options_page' ) );
 	}
 
@@ -38,7 +40,7 @@ class Tribe_Upload_Tester {
 	 * Add settings page menu item.
 	 */
 	function tribe_add_options_page() {
-		add_options_page( __('Tribe Uploader'), __('Tribe Uploader'), 'manage_options', 'tribe-upload-tester',  array( $this, 'tribe_options_page_view' ) );
+		add_options_page( __('Tribe Upload Tester'), __('Tribe Upload Tester'), 'manage_options', self::PAGE_NAME,  array( $this, 'tribe_options_page_view' ) );
 	}
 
 	/**
