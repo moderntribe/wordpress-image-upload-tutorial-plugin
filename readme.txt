@@ -3,7 +3,7 @@ Contributors: peterchester, moderntribe
 Tags: test, images, upload
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 1.0
+Stable tag: 1.1
 
 A simple test of WordPress 3.5+ uploader integration.
 
@@ -11,7 +11,11 @@ A simple test of WordPress 3.5+ uploader integration.
 
 In an effort to explore the WordPress image upload system in WordPress 3.5+, I've put together a simple plugin that does nothing but handle an upload and display the results.
 
-Huge thanks to Kyle Unzicker for pointing me in the right direction: http://codestag.com/how-to-use-wordpress-3-5-media-uploader-in-theme-options/
+Huge thanks
+* Kyle Unzicker for pointing me in the right direction:
+* http://codestag.com/how-to-use-wordpress-3-5-media-uploader-in-theme-options/
+* And Dan Cameron for helping me get to the finishline by pointing me in another great direction:
+* http://codecanyon.net/forums/thread/wordpress-35-media-uploader-api/83117
 
 == Installation ==
 
@@ -24,11 +28,16 @@ Huge thanks to Kyle Unzicker for pointing me in the right direction: http://code
 
 Honestly, at this stage, I'm not sure. That's why I wrote this. Maybe we'll do a tutorial soon. In any case, I learned 90% of this stuff here:
 
-http://codestag.com/how-to-use-wordpress-3-5-media-uploader-in-theme-options/
+* http://codestag.com/how-to-use-wordpress-3-5-media-uploader-in-theme-options/
+* http://codecanyon.net/forums/thread/wordpress-35-media-uploader-api/83117
 
 == Screenshots ==
 
 == Changelog ==
+
+= 1.1 =
+
+Implement js from the codecanyon forum to finalize the demo plugin.
 
 = 1.0 =
 

@@ -3,12 +3,14 @@
 Plugin Name: Tribe Upload Tester
 Description: A simple test of WordPress 3.5+ uploader integration.
 Author: Peter Chester of Modern Tribe, Inc.
-Version: 1.0
+Version: 1.1
 Author URI: http://tri.be
 
-Huge thanks to:
-Kyle Unzicker for pointing me in the right direction:
-http://codestag.com/how-to-use-wordpress-3-5-media-uploader-in-theme-options/
+Huge thanks
+* Kyle Unzicker for pointing me in the right direction:
+* http://codestag.com/how-to-use-wordpress-3-5-media-uploader-in-theme-options/
+* And Dan Cameron for helping me get to the finishline by pointing me in another great direction:
+* http://codecanyon.net/forums/thread/wordpress-35-media-uploader-api/83117
 */
 
 // Block direct requests
