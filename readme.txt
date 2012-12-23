@@ -35,6 +35,10 @@ Honestly, at this stage, I'm not sure. That's why I wrote this. Maybe we'll do a
 
 == Changelog ==
 
+= 1.2 =
+
+Add the ability to save and remove the attachment.
+
 = 1.1 =
 
 Implement js from the codecanyon forum to finalize the demo plugin.

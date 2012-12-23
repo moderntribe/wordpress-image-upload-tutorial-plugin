@@ -1,5 +1,8 @@
 jQuery(document).ready(function($){
 
+	// Using this var to track which item on a page full of multiple upload buttons is currently being uploaded.
+	var current_tribe_upload = 0;
+
 	// Define uploader settings
 	var frame = wp.media({
 		title : 'Tribe Image Upload Test',
@@ -8,16 +11,17 @@ jQuery(document).ready(function($){
 		button : { text : 'Insert into Tribe Test Screen' }
 	});
 
+	// Call this from the upload button to initiate the upload frame.
+	tribe_open_uploader = function(id) {
+		current_tribe_upload = id;
+		frame.open();
+		return false;
+	}
+
 	// Handle results from media manager.
 	frame.on('close',function( ) {
 		var attachment = frame.state().get('selection').first().toJSON();
 		tribe_render_image(attachment);
-	});
-
-	// Hook into upload button.
-	$('.uploader .button').click(function(e) {
-		frame.open();
-		return false;
 	});
 
 	// Output selected image HTML.
@@ -35,11 +39,17 @@ jQuery(document).ready(function($){
 		}
 		img_html += '/>';
 
-		$("#tribe_preview").html(img_html);
+		$("#tribe_preview_"+current_tribe_upload).html(img_html);
 
-		// if you save this you will probably want to also verify the nonce for security (attachment.nonces.update).
-		//console.log(attachment.nonces.update);
+		$("input[name='tribe_attachment["+current_tribe_upload+"]']").val(attachment.id);
+		$("#tribe_upload_removal_button_"+current_tribe_upload).show();
+	}
 
+	tribe_clear_uploader = function( current_tribe_upload ) {
+		$("#tribe_preview_"+current_tribe_upload).html('');
+		$("input[name='tribe_attachment["+current_tribe_upload+"]']").val('');
+		$("#tribe_upload_removal_button_"+current_tribe_upload).hide();
+		return false;
 	}
 
 });
