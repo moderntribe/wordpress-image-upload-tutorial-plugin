@@ -57,7 +57,10 @@ class Tribe_Upload_Tester {
 			<h2><?php _e('Tribe Upload Tester', 'tribe-upload-tester'); ?></h2>
 			<form action="<?php echo admin_url('options-general.php?page='.self::PAGE_NAME); ?>" method="POST">
 				<p><?php _e('Click the button bellow to invoke the WordPress uploader. Once you have uploaded and selected an image, you should see it displayed below.', 'tribe-upload-tester'); ?></p>
-				<?php $this->render_button( 'some-unique-id-for-this-upload' ); ?>
+				<?php $this->render_button( 'some-unique-id-for-this-image', 'single-image' ); ?>
+				<?php $this->render_button( 'some-unique-id-for-this-gallery', 'multiple-images' ); ?>
+				<?php $this->render_button( 'some-unique-id-for-this-video', 'video' ); ?>
+				<?php $this->render_button( 'some-unique-id-for-this-audio', 'audio' ); ?>
 				<?php wp_nonce_field('tribe-upload-tester') ?>
 				<input type="submit" class="button button-primary" value="<?php _e('Save', 'tribe-upload-tester'); ?>" />
 			</form>
@@ -68,14 +71,28 @@ class Tribe_Upload_Tester {
 	/**
 	 * Render the Upload button.
 	 */
-	function render_button( $uploader_id ) {
+	function render_button( $uploader_id, $type='single-image' ) {
 		$uploader_id = esc_js( $uploader_id ); // Not sure if this is the right escape.
 		// get attachment id based on uploader_id
 		$attachment_id = $this->get_attachment_id( $uploader_id );
 		$hide_button_style = ( !empty( $attachment_id ) ) ? '' : 'display:none;';
+		switch ( $type ) {
+			case 'video' :
+				$title = __( 'Single Video', 'tribe-upload-tester' );
+				break;
+			case 'audio' :
+				$title = __( 'Single Audio', 'tribe-upload-tester' );
+				break;
+			case 'multiple-images' :
+				$title = __( 'Multiple Images', 'tribe-upload-tester' );
+				break;
+			default :
+				$title = __( 'Single Image', 'tribe-upload-tester' );
+		}
 		?>
 		<div class="uploader">
-			<input type="submit" class="button" name="tribe_uploader_button[<?php echo $uploader_id; ?>]" id="tribe_uploader_button_<?php echo $uploader_id; ?>" value="<?php _e('Upload', 'tribe-upload-tester'); ?>" onclick="return tribe_open_uploader('<?php echo $uploader_id; ?>');" />
+			<h3><?php echo $title; ?></h3>
+			<input type="submit" class="button" name="tribe_uploader_button[<?php echo $uploader_id; ?>]" id="tribe_uploader_button_<?php echo $uploader_id; ?>" value="<?php _e('Upload', 'tribe-upload-tester'); ?>" onclick="return tribe_open_uploader('<?php echo $uploader_id; ?>', '<?php echo $type; ?>');" />
 			<input type="submit" class="button" style="<?php echo $hide_button_style; ?>" name="tribe_upload_removal_button[<?php echo $uploader_id; ?>]" id="tribe_upload_removal_button_<?php echo $uploader_id; ?>" value="<?php _e('Remove Upload', 'tribe-upload-tester'); ?>" onclick="return tribe_clear_uploader('<?php echo $uploader_id; ?>');" />
 
 			<div class="tribe_preview" id="tribe_preview_<?php echo $uploader_id; ?>">
@@ -103,9 +120,9 @@ class Tribe_Upload_Tester {
 		}
 	}
 
-	private function set_attachment_id( $uploader_id, $attachment_id ) {
+	private function set_attachment_id( $uploader_id, $attachment_ids ) {
 		$option_key = $this->get_option_key( $uploader_id );
-		update_option( $option_key, abs( $attachment_id ) );
+		update_option( $option_key, $attachment_ids );
 	}
 
 	private function get_attachment_id( $uploader_id ) {
