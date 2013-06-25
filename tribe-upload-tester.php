@@ -4,7 +4,7 @@ Plugin Name: Tribe Upload Tester
 Description: A simple test of WordPress 3.5+ uploader integration.
 Author: Peter Chester of Modern Tribe, Inc.
 Version: 1.2
-Author URI: http://tri.be
+Author URI: http://m.tri.be/4r
 
 Huge thanks
 * Kyle Unzicker for pointing me in the right direction:
